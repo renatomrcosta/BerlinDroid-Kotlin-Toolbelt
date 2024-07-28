@@ -4,10 +4,9 @@
 
 import eu.jrie.jetbrains.kotlinshell.shell.shell
 
-
-println("Starting transformation")
 shell {
-    val transformationLambda = stringLambda { it.toUpperCase() to "" }
+    val transformationLambda = stringLambda {
+        it.toUpperCase() to ""
+    }
     pipeline { "ls".process() pipe transformationLambda }
 }
-println("transformation complete")
