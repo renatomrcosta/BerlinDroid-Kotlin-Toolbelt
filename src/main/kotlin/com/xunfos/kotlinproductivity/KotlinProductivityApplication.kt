@@ -29,7 +29,7 @@ class ApiController(private val pokeRepository: PokeRepository) {
     fun getById(@PathVariable id: Int): ResponseEntity<Pokemon> =
         pokeRepository.getById(id)?.let { ResponseEntity.ok(it) } ?: ResponseEntity.notFound().build()
 
-    @PostMapping
+    @PostMapping(consumes = ["application/json"])
     fun save(@RequestBody pokemon: Pokemon): Pokemon = pokeRepository.save(pokemon)
 }
 
@@ -42,7 +42,6 @@ class PokeRepository {
     fun getAll(): List<Pokemon> = repo.values.toList()
     fun getById(id: Int): Pokemon? = repo[id]
     final fun save(pokemon: Pokemon): Pokemon = repo.put(pokemon.id, pokemon) ?: pokemon
-    fun getByType(type: String): List<Pokemon> = repo.values.filter { it.mainType == type || it.subType == type }
 
     init {
         save(Pokemon(id = 25, name = "Pikachu", mainType = "Electric"))

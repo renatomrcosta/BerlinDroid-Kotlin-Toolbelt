@@ -1,0 +1,5 @@
+### GET page
+GET https://pokeapi.co/api/v2/pokemon
+
+### GET specific
+GET https://pokeapi.co/api/v2/pokemon/415`
